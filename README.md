@@ -24,7 +24,7 @@ how it works, it becomes possible to customize it to fit yours.
             - Another
         ---
     ```
-3. Run ```make something``` to run the app, process html & css and push the generated content 
+3. Run ```make``` to run the app, process html & css and push the generated content 
 to github pages submodule.
 
 ## Tech stack
