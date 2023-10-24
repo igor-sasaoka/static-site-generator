@@ -1,0 +1,33 @@
+{{define "content"}}
+    <div class="hero min-h-6">
+        <div class="hero-content flex-col">
+            <img src="./static/img/goku.jpg" class="max-w-full rounded-lg shadow-xl" />
+            <div>
+                Hi I'm <span class="text-primary font-bold">Sasaoka</span>! <br>
+                <p class="py-4 text-left">
+                I'm a seasoned Developer pivoting into <span class="text-secondary font-medium">Cloud Engineering</span> and <span class="text-secondary font-medium"">Infrastructure Ops</span>.
+                </p>
+                <p class="py-4 text-left">
+                I'll use this platform to share my researches on the nuances of building resilisent, high-performance and cost effective backends.
+                You can find me on <a href="https://www.linkedin.com/in/igor-sasaoka/" class="font-medium text-primary hover:cursor-pointer">Linkedin</a> and <a href="https://github.com/igor-sasaoka" class="font-medium text-primary hover:cursor-pointer">Github</a>!
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="divider">Blog</div>
+    <div class="flex flex-col md:p-4">
+        <ul class="flex flex-col">
+            {{range $i, $Post := .Posts}}
+                <li class="flex justify-between pt-3">
+                    <span class="before:content-['»']">
+                        <a  href="{{$Post.Path}}" 
+                            class="text-start pl-2 no-underline hover:text-primary hover:cursor-pointer">
+                            {{$Post.Title}} 
+                        </a>
+                    </span>
+                    <span class="text-end italic text-slate-400">{{$Post.Date}}</span>
+                </li>
+            {{end}}
+        </ul>
+    </div>
+{{end}}

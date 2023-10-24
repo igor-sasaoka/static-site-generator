@@ -1,0 +1,199 @@
+package main
+
+import (
+	"bytes"
+	"io/fs"
+	"log"
+	"os"
+	"path/filepath"
+	"strings"
+	"text/template"
+
+	"github.com/yuin/goldmark"
+	meta "github.com/yuin/goldmark-meta"
+	"github.com/yuin/goldmark/extension"
+	"github.com/yuin/goldmark/parser"
+)
+
+const (
+    CONTENT_DIR = "./deploy/"
+    CONTENT_POSTS_DIR = "posts/"
+    
+    CSS_PATH = "./static/css/build.css"
+
+    MARKDOWN_DIR = "./markdown/"
+    
+    TEMPLATE_HEADER = "{{define \"content\"}}\n"
+    TEMPLATE_HEADER_CLOSER = "\n{{end}}"
+
+    LAYOUT string = "./views/layouts/main.html"
+    PARTIALS_DIR string = "./views/partials/"
+)
+
+type Post struct {
+    Title string
+    Summary string
+    Path string
+    Date string
+    Categories []string
+}
+
+var PostsByTitle map[string]*Post
+var PostsByCategory map[string][]*Post
+var Posts []*Post
+
+func main() {
+    clearGeneratedContent()
+
+    generatePostFromMd()
+    generateHomePage()
+}
+
+func RegisterPost(post *Post) {
+    if PostsByTitle == nil {
+        PostsByTitle = make(map[string]*Post)
+    }
+    if PostsByCategory == nil {
+        PostsByCategory = make(map[string][]*Post)
+    }
+    Posts = append(Posts, post)
+    PostsByTitle[post.Title] = post
+    
+    for _, c := range(post.Categories) {
+        PostsByCategory[c] = append(PostsByCategory[c], post)
+    }
+}
+
+func generatePostFromMd() {
+    filepath.Walk(MARKDOWN_DIR, func(path string, info fs.FileInfo, err error) error {
+        if filepath.Ext(info.Name()) != ".md" {
+            log.Println("Not a {.md} file! Skipping.")
+            return nil
+        }
+
+        mdAsByte, err := os.ReadFile(path)
+        if err != nil {
+            log.Println(err.Error())
+            return nil
+        }
+        htmlAsByte, post := mdToHTML(mdAsByte)
+        htmlAsString := string(htmlAsByte)
+
+        //Add golang template definitions to generated html
+        htmlAsString = 
+            TEMPLATE_HEADER +
+            htmlAsString +
+            TEMPLATE_HEADER_CLOSER 
+
+        t := template.New("generated")
+        _, err = t.ParseFiles(LAYOUT) 
+        if err != nil {
+            log.Fatal(err.Error())
+        }
+        _, err = t.Parse(htmlAsString)
+        if err != nil {
+            log.Fatal(err.Error())
+        }
+       
+        //Post path is relative to the index.html inside ./deploy dir
+        post.Path = CONTENT_POSTS_DIR + strings.Replace(info.Name(), ".md", ".html", 1)
+        f, err := os.Create(CONTENT_DIR + post.Path)
+        defer f.Close()
+        if err != nil {
+            log.Fatal(err.Error())
+        }
+
+        err = t.ExecuteTemplate(f, "main", struct{
+            Css string
+            HighlightCss string
+            HomeLink string
+        }{
+            Css: "../" + CSS_PATH,
+            HomeLink: "../index.html",
+        })
+        if err != nil {
+            log.Println("error while executing template:\n\n\n" + err.Error())
+            return nil
+        }
+        RegisterPost(post)
+        log.Println("file created successfully")
+        return nil
+    })
+}
+
+func generateHomePage() {
+    t, err := template.New("main").ParseFiles(
+        LAYOUT,
+        PARTIALS_DIR + "hero.html", 
+    )
+    if err != nil {
+        log.Fatal("Error parsing home page:\n" + err.Error())
+    }
+
+    filePath := CONTENT_DIR + "index.html"
+    f, err := os.Create(filePath)
+    defer f.Close()
+    if err != nil {
+        log.Fatal(err.Error())
+    }
+
+    err = t.ExecuteTemplate(f, "main", struct{
+        Css string
+        Posts []*Post 
+        HomeLink string
+    }{
+        Css: CSS_PATH,
+        Posts: Posts, 
+        HomeLink: "#",
+    })
+    if err != nil {
+        log.Println("error while executing template:\n\n\n" + err.Error())
+    }
+}
+
+//777 permissions bc I'll run this locally only and will not version file/dir perms
+func clearGeneratedContent() {
+    os.Remove(CONTENT_DIR + "index.html")
+    os.RemoveAll(CONTENT_DIR + CONTENT_POSTS_DIR)
+    os.Mkdir(CONTENT_DIR + CONTENT_POSTS_DIR, 0777)
+}
+
+//Process markdown as bytes returning html bytes and Post variable with meta data
+func mdToHTML(md []byte) ([]byte, *Post) {
+    mdParser := goldmark.New(
+        goldmark.WithExtensions(
+            extension.GFM,
+            meta.Meta,
+        ),
+        goldmark.WithParserOptions(
+              parser.WithAutoHeadingID(),
+          ),
+    )
+    context := parser.NewContext()
+    var buf bytes.Buffer
+
+    err := mdParser.Convert(md, &buf, parser.WithContext(context))
+    if err != nil {
+        log.Fatal(err.Error())
+    }
+    
+    //Get .md metadata
+    metaData := meta.Get(context)
+    if metaData["Title"] == nil || metaData["Date"] == nil || metaData["Categories"] == nil {
+        log.Fatalf("Required metadata missing: \n%v", metaData)
+    }
+
+    //Assert categories type from interface{} to string
+    var categories []string
+    for _, c := range(metaData["Categories"].([]interface{})) {
+        str := c.(string)
+        categories = append(categories, str)
+    }
+
+    post := Post{
+        Title:  metaData["Title"].(string),
+        Date: metaData["Date"].(string),
+        Categories: categories,
+    }
+    return buf.Bytes(), &post
+}

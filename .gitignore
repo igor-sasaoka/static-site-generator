@@ -1,0 +1,5 @@
+node_modeules
+node_modules/*
+.env
+static/css/build.css
+static/css/compiled.css
