@@ -20,6 +20,7 @@ const (
     CONTENT_POSTS_DIR = "posts/"
     
     CSS_PATH = "./static/css/build.css"
+    FAVICON = "./static/favicon.ico"
 
     MARKDOWN_DIR = "./markdown/"
     
@@ -108,10 +109,12 @@ func generatePostFromMd() {
             HighlightCss string
             HomeLink string
             Title string
+            Favicon string
         }{
             Css: "../" + CSS_PATH,
             HomeLink: "../index.html",
             Title: post.Title,
+            Favicon: "../" + FAVICON,
         })
         if err != nil {
             log.Println("error while executing template:\n\n\n" + err.Error())
@@ -143,10 +146,12 @@ func generateHomePage() {
         Css string
         Posts []*Post 
         HomeLink string
+        Favicon string
     }{
         Css: CSS_PATH,
         Posts: Posts, 
         HomeLink: "#",
+        Favicon: FAVICON,
     })
     if err != nil {
         log.Println("error while executing template:\n\n\n" + err.Error())
