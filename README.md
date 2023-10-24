@@ -14,7 +14,7 @@ how it works, it becomes possible to customize it to fit yours.
 
 1. Add MD file to ```./markdown``` directory.
 2. The Markdown should start with a ```TOML``` MetaData header with the following attributes:
-    ```toml
+    ```
         ---
         Title: Post Title 
         Summary: Post summary (even though this is not implemented yet 😅)
