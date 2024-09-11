@@ -1,638 +1,150 @@
 ---
-Title: Markdown
-Summary: Dale
-Date: Oct 24, 2023
+Title: Giving in to AI 
+Summary: How Claude Transformed My Development Workflow
+Date: Sep 11, 2024
 Categories:
-    - xd
+    - AI
+    - Developer experience
+    - Productivity
 ---
-# Headers
+# Giving in to AI: How Claude Transformed My Development Workflow
 
-```
-# h1 Heading 8-)
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
+As a seasoned developer, I've always been skeptical of the AI hype. But when an AI tool not only enters my workflow but significantly enhances it, it's worth taking notice. Enter Claude, Anthropic's large language model that has surprisingly become an indispensable part of my development process. In this post, I'll share how Claude AI has improved my productivity, the challenges I've faced, and the innovative workaround I've developed to maximize its potential.
+# The Pros: Unleashing Claude's Potential in Development
 
-Alternatively, for H1 and H2, an underline-ish style:
+## Context-Aware Project Management
+Claude.ai's "projects" feature is a game-changer. By allowing us to add a variety of external resources - from diagrams and images to text and code files - it creates a holistic, context-aware environment. This comprehensive approach results in more accurate and relevant AI assistance, significantly reducing the time spent explaining project specifics.
 
-Alt-H1
-======
+## Deep Code Understanding
+When working with a complete project, Claude's level of code comprehension is truly remarkable. It doesn't just understand individual files; it grasps the entire architecture and relationships between components. This deep understanding translates to:
 
-Alt-H2
-------
-```	
+1. More accurate code suggestions
+2. Faster bug identification and resolution
+3. Improved code refactoring recommendations
 
-# h1 Heading 8-)
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
+## Consistent Code Generation
+One of Claude's standout features is its ability to generate code that's consistent with your existing codebase. By analyzing your project's:
 
-Alternatively, for H1 and H2, an underline-ish style:
+- Coding style
+- Architecture patterns
+- Business logic
 
-Alt-H1
-======
+Claude produces code that seamlessly integrates with your project. This consistency:
 
-Alt-H2
-------
+- Reduces the learning curve for new team members
+- Minimizes code review cycles
+- Maintains code quality across the project
 
-------
+## Business-Aligned Development
+By incorporating business information alongside the codebase, Claude bridges the gap between technical requirements and business needs. This alignment results in:
 
-# Emphasis
+- Faster feature development aligned with business goals
+- Reduced miscommunication between development and business teams
+- More accurate estimation of development efforts
 
-```
-Emphasis, aka italics, with *asterisks* or _underscores_.
+## Scalability and Knowledge Retention
+As your project grows, Claude grows with it. It acts as a centralized knowledge base, retaining information about your project's evolution. This scalability means:
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+- Reduced dependency on individual team members' knowledge
+- Faster onboarding for new developers
+- Consistent decision-making across the project lifecycle
 
-Combined emphasis with **asterisks and _underscores_**.
+## Productivity Boost
+While hard to quantify, the cumulative effect of these benefits is a significant boost in productivity. Developers spend less time on repetitive tasks and more time on creative problem-solving, leading to faster development cycles and more innovative solutions.
+# The Cons: Navigating Claude's Limitations
 
-Strikethrough uses two tildes. ~~Scratch this.~~
+While Claude AI has significantly enhanced my development workflow, it's important to acknowledge its current limitations and challenges. Understanding these drawbacks is crucial for tech professionals and decision-makers considering AI integration in their development processes.
 
-**This is bold text**
+## Manual Project Updates
+The most significant drawback of the Claude console is the need for manual updates. Every time you modify your project files, you must manually update them in Claude's project. This process:
 
-__This is bold text__
+- Interrupts the development flow
+- Increases the risk of working with outdated information
+- Requires disciplined maintenance to ensure Claude has the latest context
 
-*This is italic text*
+## Lack of API Integration for Projects
+Anthropic's API currently doesn't support the "project" feature available in the web console. This limitation:
 
-_This is italic text_
+- Prevents seamless integration with existing development tools and CI/CD pipelines
+- Requires developers to switch between their IDE and the Claude web console
+- Hinders the potential for real-time, automated project updates
 
-~~Strikethrough~~
-```
+## Learning Curve and Adaptation Period
+While Claude is powerful, leveraging its full potential requires an initial investment of time and effort:
 
-Emphasis, aka italics, with *asterisks* or _underscores_.
+- Developers need to learn effective prompting techniques
+- Teams must establish best practices for AI-assisted development
+- Existing workflows may need adjustment to accommodate AI integration
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+## Data Privacy and Security Concerns
+When working with proprietary code and sensitive business information:
 
-Combined emphasis with **asterisks and _underscores_**.
+- Uploading project files to an external service may raise security concerns
+- Companies need to carefully review Anthropic's data handling and privacy policies
+- Additional measures may be needed to ensure compliance with data protection regulations
 
-Strikethrough uses two tildes. ~~Scratch this.~~
+# The Workaround: Bridging the Gap with Custom Automation
 
-**This is bold text**
+As a computer scientist, encountering limitations often sparks innovation. To address Claude's project update constraints, I developed a custom solution that not only solves the immediate problem but also enhances our AI-assisted development workflow.
 
-__This is bold text__
+## The Semantic Compilation Script
 
-*This is italic text*
+I created a script that automates the process of updating Claude's project context. This script:
 
-_This is italic text_
+1. Gathers all relevant files from the project
+2. Concatenates them into a single, semantically rich file
+3. Adds a visual representation of the project's file structure
 
-~~Strikethrough~~
+### Key Features
 
-------
+- **Comprehensive File Collection**: Automatically identifies and includes all pertinent project files.
+- **Semantic Structuring**: Organizes the content in a way that maximizes Claude's understanding of the project context.
+- **File Structure Visualization**: Generates a tree-like representation of the project structure, enhancing Claude's grasp of the overall architecture.
 
-# Lists
+## Implementation Example
 
-```
-1. First ordered list item
-2. Another item
-⋅⋅* Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
-⋅⋅1. Ordered sub-list
-4. And another item.
+Here's the Makefile I use for a Go project:
 
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
-
-1. Make my changes
-    1. Fix bug
-    2. Improve formatting
-        - Make the headings bigger
-2. Push my commits to GitHub
-3. Open a pull request
-    * Describe my changes
-    * Mention all the members of my team
-        * Ask for feedback
-
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
+```makefile
+run:
+    rm compiled.txt
+    tail -v -n +1 {PROJECT_PATH}/main.go >> compiled.txt
+    tail -v -n +1 {PROJECT_PATH}/**/*.go >> compiled.txt
+    echo "//FileSystem structure" >> compiled.txt
+    tree {PROJECT_PATH} >> compiled.txt
 ```
 
-1. First ordered list item
-2. Another item
-⋅⋅* Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
-⋅⋅1. Ordered sub-list
-4. And another item.
+This Makefile:
 
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
-
-1. Make my changes
-    1. Fix bug
-    2. Improve formatting
-        - Make the headings bigger
-2. Push my commits to GitHub
-3. Open a pull request
-    * Describe my changes
-    * Mention all the members of my team
-        * Ask for feedback
-
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
-
-------
-
-# Task lists
-
+- Removes any existing compiled.txt
+- Appends the content of main.go
+- Includes all .go files from the project
+- Adds a filesystem structure representation similar to the one below
 ```
-- [x] Finish my changes
-- [ ] Push my commits to GitHub
-- [ ] Open a pull request
-- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
-- [x] list syntax required (any unordered or ordered list supported)
-- [x] this is a complete item
-- [ ] this is an incomplete item
+├── cmd
+│   └── integrationTest
+│       └── main.go
+├── config
+│   └── config.go
+├── internal
+│   ├── repository
+│   │   └── user.go
+│   ├── service
+│   │   ├── auth.go
+│   └── util
+│       └── util.go
+├── main.go
+├── model
+│   └── model.go
+├── server
+│   └── server.go
 ```
+# Conclusion
 
-- [x] Finish my changes
-- [ ] Push my commits to GitHub
-- [ ] Open a pull request
-- [x] @mentions, #refs, [links](), **formatting**, and <del>tags</del> supported
-- [x] list syntax required (any unordered or ordered list supported)
-- [ ] this is a complete item
-- [ ] this is an incomplete item
+Working with Claude AI has been an eye-opening experience. Despite its current limitations, particularly the need for manual project updates and lack of API integration for projects, it has significantly enhanced my development workflow. The custom script I developed helps bridge some of these gaps, making the process more streamlined and efficient.
 
-------
+However, there's still room for improvement. As AI technology evolves, I expect these tools to become even more powerful and user-friendly. In the meantime, I plan to explore other AI-assisted development options, such as Cursor and various Neovim plugins, to see which solution best fits my needs.
 
-# Ignoring Markdown formatting
+I'll continue to share my experiences as I try out these different tools. Each developer and team has unique requirements, so what works best for me might be different for others. The key is to remain open to these new technologies and find ways to integrate them that boost productivity without disrupting established workflows.
 
-You can tell GitHub to ignore (or escape) Markdown formatting by using \ before the Markdown character.
-
-```
-Let's rename \*our-new-project\* to \*our-old-project\*.
-```
-
-Let's rename \*our-new-project\* to \*our-old-project\*.
-
-------
-
-# Links
-
-```
-[I'm an inline-style link](https://www.google.com)
-
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
-
-[I'm a reference-style link][Arbitrary case-insensitive reference text]
-
-[I'm a relative reference to a repository file](../blob/master/LICENSE)
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself].
-
-URLs and URLs in angle brackets will automatically get turned into links.
-http://www.example.com or <http://www.example.com> and sometimes
-example.com (but not on Github, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
-```
-
-[I'm an inline-style link](https://www.google.com)
-
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
-
-[I'm a reference-style link][Arbitrary case-insensitive reference text]
-
-[I'm a relative reference to a repository file](../blob/master/LICENSE)
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself].
-
-URLs and URLs in angle brackets will automatically get turned into links.
-http://www.example.com or <http://www.example.com> and sometimes
-example.com (but not on Github, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
-
-------
-
-# Images
-
-```
-Here's our logo (hover to see the title text):
-
-Inline-style:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
-Reference-style:
-![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-```
-
-Here's our logo (hover to see the title text):
-
-Inline-style:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
-Reference-style:
-![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
-------
-
-# [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
-
-```
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-```
-
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Inline footnote^[Text of inline footnote] definition.
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Footnote text.
-
-------
-
-# Code and Syntax Highlighting
-
-```
-Inline `code` has `back-ticks around` it.
-```
-
-Inline `code` has `back-ticks around` it.
-
-```c#
-using System.IO.Compression;
-
-#pragma warning disable 414, 3021
-
-namespace MyApplication
-{
-    [Obsolete("...")]
-    class Program : IInterface
-    {
-        public static List<int> JustDoIt(int count)
-        {
-            Console.WriteLine($"Hello {Name}!");
-            return new List<int>(new int[] { 1, 2, 3 })
-        }
-    }
-}
-```
-
-```css
-@font-face {
-  font-family: Chunkfive; src: url('Chunkfive.otf');
-}
-
-body, .usertext {
-  color: #F0F0F0; background: #600;
-  font-family: Chunkfive, sans;
-}
-
-@import url(print.css);
-@media print {
-  a[href^=http]::after {
-    content: attr(href)
-  }
-}
-```
-
-```javascript
-function $initHighlight(block, cls) {
-  try {
-    if (cls.search(/\bno\-highlight\b/) != -1)
-      return process(block, true, 0x0F) +
-             ` class="${cls}"`;
-  } catch (e) {
-    /* handle exception */
-  }
-  for (var i = 0 / 2; i < classes.length; i++) {
-    if (checkCondition(classes[i]) === undefined)
-      console.log('undefined');
-  }
-}
-
-export  $initHighlight;
-```
-
-```php
-require_once 'Zend/Uri/Http.php';
-
-namespace Location\Web;
-
-interface Factory
-{
-    static function _factory();
-}
-
-abstract class URI extends BaseURI implements Factory
-{
-    abstract function test();
-
-    public static $st1 = 1;
-    const ME = "Yo";
-    var $list = NULL;
-    private $var;
-
-    /**
-     * Returns a URI
-     *
-     * @return URI
-     */
-    static public function _factory($stats = array(), $uri = 'http')
-    {
-        echo __METHOD__;
-        $uri = explode(':', $uri, 0b10);
-        $schemeSpecific = isset($uri[1]) ? $uri[1] : '';
-        $desc = 'Multi
-line description';
-
-        // Security check
-        if (!ctype_alnum($scheme)) {
-            throw new Zend_Uri_Exception('Illegal scheme');
-        }
-
-        $this->var = 0 - self::$st;
-        $this->list = list(Array("1"=> 2, 2=>self::ME, 3 => \Location\Web\URI::class));
-
-        return [
-            'uri'   => $uri,
-            'value' => null,
-        ];
-    }
-}
-
-echo URI::ME . URI::$st1;
-
-__halt_compiler () ; datahere
-datahere
-datahere */
-datahere
-```
-
-------
-
-# Tables
-
-```
-Colons can be used to align columns.
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don't need to make the
-raw Markdown line up prettily. You can also use inline Markdown.
-
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
-
-| Command | Description |
-| --- | --- |
-| `git status` | List all *new or modified* files |
-| `git diff` | Show file differences that **haven't been** staged |
-
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
-
-| Name     | Character |
-| ---      | ---       |
-| Backtick | `         |
-| Pipe     | \|        |
-```
-
-Colons can be used to align columns.
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don't need to make the
-raw Markdown line up prettily. You can also use inline Markdown.
-
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
-
-| Command | Description |
-| --- | --- |
-| `git status` | List all *new or modified* files |
-| `git diff` | Show file differences that **haven't been** staged |
-
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
-
-| Name     | Character |
-| ---      | ---       |
-| Backtick | `         |
-| Pipe     | \|        |
-
-------
-
-# Blockquotes
-
-```
-> Blockquotes are very handy in email to emulate reply text.
-> This line is part of the same quote.
-
-Quote break.
-
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
-
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
-```
-
-> Blockquotes are very handy in email to emulate reply text.
-> This line is part of the same quote.
-
-Quote break.
-
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
-
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
-
-------
-
-# Inline HTML
-
-```
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
-
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
-```
-
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
-
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
-
-------
-
-# Horizontal Rules
-
-```
-Three or more...
-
----
-
-Hyphens
-
-***
-
-Asterisks
-
-___
-
-Underscores
-```
-
-Three or more...
-
----
-
-Hyphens
-
-***
-
-Asterisks
-
-___
-
-Underscores
-
-------
-
-# YouTube Videos
-
-```
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE" target="_blank">
-<img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
-</a>
-```
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE" target="_blank">
-<img src="https://octodex.github.com/images/stormtroopocat.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
-</a>
-
-```
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
-```
-
-[![IMAGE ALT TEXT HERE](https://octodex.github.com/images/stormtroopocat.jpg)](https://www.youtube.com/watch?v=ciawICBvQoE)
+Stay tuned for future posts where I'll review other AI-assisted development tools and share my findings. The world of AI in software development is rapidly changing, and I'm excited to see where it goes next.
